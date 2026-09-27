@@ -3,6 +3,8 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import { Content as HomeContent, frontmatter as home } from '../content/home.md';
 import { frontmatter as selectedWork } from '../content/selected-work.md';
 import { publications } from '../lib/publications';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 
 const selections = selectedWork.papers as { id: string; summary: string }[];
 const selected = selections.flatMap(({ id, summary }) => {
@@ -10,11 +12,12 @@ const selected = selections.flatMap(({ id, summary }) => {
   if (!paper) throw new Error(`Selected publication ${id} was not found in the bibliography.`);
   return paper ? [{ paper, summary }] : [];
 });
+const portraitFile = ['portrait.webp', 'portrait.jpg', 'portrait.png'].find((name) => existsSync(join(process.cwd(), 'public', name)));
 ---
 
 <SiteLayout title="Home" description={home.description}>
   <section class="hero">
-    <div class="container hero-grid">
+    <div class:list={['container', 'hero-grid', { 'with-portrait': portraitFile }]}>
       <div>
         <p class="eyebrow">Research scientist · Robotics &amp; autonomy</p>
         <h1>Karl Berntorp</h1>
@@ -24,7 +27,8 @@ const selected = selections.flatMap(({ id, summary }) => {
           <a class="button button-secondary" href="/files/Karl_Berntorp_CV.pdf">View CV <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <aside class="hero-aside" aria-label="Current role and research areas">
+      <aside class:list={['hero-aside', { 'has-portrait': portraitFile }]} aria-label="Current role and research areas">
+        {portraitFile && <img class="portrait" src={`/${portraitFile}`} alt="Karl Berntorp" width="200" height="250" decoding="async" />}
         <div class="hero-aside-rule" aria-hidden="true"></div>
         <p class="eyebrow">Current role</p>
         <p class="aside-role">Principal Research Scientist</p>
@@ -78,10 +82,13 @@ const selected = selections.flatMap(({ id, summary }) => {
 <style>
   .hero { padding-block: clamp(4rem, 8vw, 7.5rem); background: linear-gradient(118deg, #f5f8fb 0%, #fff 68%); border-bottom: 1px solid var(--line); }
   .hero-grid { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(230px, .8fr); align-items: end; gap: clamp(2.5rem, 8vw, 7rem); }
+  .hero-grid.with-portrait { align-items: start; }
   h1 { max-width: 780px; margin-bottom: 1.45rem; }
   .hero-lead { max-width: 650px; margin-bottom: 2rem; color: #3e5368; font-family: var(--serif); font-size: clamp(1.2rem, 2.2vw, 1.6rem); line-height: 1.55; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
   .hero-aside { padding: 0 0 .3rem 1.7rem; border-left: 1px solid #cad9e5; }
+  .hero-aside.has-portrait { padding-left: 0; border-left: 0; }
+  .portrait { display: block; width: 200px; max-width: 100%; height: auto; margin-bottom: 1.5rem; border: 1px solid var(--line); background: var(--soft); }
   .hero-aside-rule { width: 3rem; height: 3px; margin-bottom: 2rem; background: var(--blue); }
   .hero-aside .eyebrow { margin-bottom: .45rem; }
   .aside-role { margin: 0; color: var(--navy); font-family: var(--serif); font-size: 1.42rem; line-height: 1.25; }

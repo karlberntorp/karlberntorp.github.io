@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import AuthorList from '../components/AuthorList.astro';
 import { patents, publications, type Publication } from '../lib/publications';
 
 const labels: Record<Publication['type'], string> = {
@@ -59,7 +60,7 @@ const patentYears = byYear(patents);
                 <h4>
                   {entry.url ? <a href={entry.url}>{entry.title}<span class="external" aria-hidden="true">↗</span></a> : entry.title}
                 </h4>
-                <p class="authors">{entry.authors.join(', ')}</p>
+                <p class="authors"><AuthorList authors={entry.authors} /></p>
                 <p class="venue">{entry.venue}{entry.doi && <span class="doi"> · DOI: {entry.doi}</span>}</p>
               </li>
             ))}
@@ -85,7 +86,7 @@ const patentYears = byYear(patents);
                 <h4>
                   {entry.url ? <a href={entry.url}>{entry.title}<span class="external" aria-hidden="true">↗</span></a> : entry.title}
                 </h4>
-                <p class="authors">{entry.authors.join(', ')}</p>
+                <p class="authors"><AuthorList authors={entry.authors} /></p>
                 <p class="venue">{entry.venue}</p>
               </li>
             ))}
@@ -121,6 +122,7 @@ const patentYears = byYear(patents);
   .external { display: inline-block; margin-left: .35rem; font-family: 'DM Sans', sans-serif; font-size: .8em; font-weight: 400; }
   .authors, .venue { max-width: 56rem; margin: .3rem 0 0; line-height: 1.5; }
   .authors { color: #344e65; font-size: .95rem; }
+  .authors :global(strong) { color: var(--navy); font-weight: 700; }
   .venue { color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: .875rem; }
   .doi { overflow-wrap: anywhere; }
   .patents-section { margin-top: 5.5rem; }

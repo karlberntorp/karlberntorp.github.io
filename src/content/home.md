@@ -1,12 +1,12 @@
 ---
 title: Karl Berntorp
-description: Karl Berntorp is a research scientist working on robotics, autonomy, estimation, and control.
-lead: Principal Research Scientist at Chewy working on robotics, autonomy, estimation, and control.
-contactLead: I am interested in research collaborations that make autonomous systems more capable and dependable.
+description: Karl Berntorp leads autonomy and robotics research and development, from new methods to deployed systems.
+lead: Principal Research Scientist at Chewy; my work spans autonomy research, validation, and deployed systems.
+contactLead: I welcome conversations about research and engineering problems in robotics and autonomy.
 ---
 
-I am a Principal Research Scientist at Chewy, where I lead autonomy algorithm strategy and development for mobile manipulation systems. My work connects mathematical methods in estimation, planning, and control with the demands of physical systems.
+I lead autonomy and robotics R&D, turning research into capabilities that work in deployed systems. At Chewy, I am a Principal Research Scientist responsible for autonomy algorithm strategy and development for mobile manipulation systems. My work spans strategy, success metrics, validation, and the technical decisions needed to deliver reliable performance.
 
-Before Chewy, I led algorithm research at Symbotic and Walmart Advanced Systems & Robotics, and the Control for Autonomy team at Mitsubishi Electric Research Laboratories. Across those roles, I have worked on autonomous robots and vehicles, satellite positioning, and sensing and control. I received my PhD in Automatic Control from Lund University.
+Previously, I led algorithm work at Symbotic and Walmart Advanced Systems & Robotics, and the Control for Autonomy team at Mitsubishi Electric Research Laboratories. I have managed and mentored PhD researchers, led research across multiple groups, and worked with senior leadership and engineering teams to carry ideas into practice.
 
-I am interested in how robots can make sound decisions with uncertain measurements, changing environments, and real operating constraints. My research and engineering work span foundational algorithms, experimental demonstrations, and systems deployed in practice.
+I earned a PhD in Automatic Control from Lund University. My research centers on estimation, planning, and control for robots and autonomous vehicles, especially when measurements are uncertain and operating constraints matter.

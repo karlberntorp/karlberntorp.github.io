@@ -1,0 +1,12 @@
+---
+interface Props { authors: string[] }
+const { authors } = Astro.props;
+
+function isKarlBerntorp(name: string): boolean {
+  const normalized = name.normalize('NFKC').replace(/\s+/g, ' ').trim();
+  return /^(?:Karl|K\.?)(?: O\.?)? Berntorp$/i.test(normalized)
+    || /^Berntorp, (?:Karl|K\.?)(?: O\.?)?$/i.test(normalized);
+}
+---
+
+{authors.map((author, index) => <>{index > 0 && ', '}{isKarlBerntorp(author) ? <strong>{author}</strong> : author}</>)}

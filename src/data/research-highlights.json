@@ -1,0 +1,32 @@
+[
+  {
+    "publicationId": "Berntorp2020jan",
+    "theme": "planning-control",
+    "image": "/research/friction-adaptive-tracking.png",
+    "alt": "Experimental double lane-change plots on snow: a black dashed reference path, red dotted fixed-model response, and blue solid friction-adaptive response, with tracking and vehicle-state traces below.",
+    "caption": "On a snow-covered track, the friction-adaptive controller (blue) followed the reference path (black dashed) more closely through a double lane change than the controller using an asphalt tire model (red dotted).",
+    "credit": "Cropped Figure 8 from Berntorp, Quirynen, Uno and Di Cairano, Vehicle System Dynamics (2020); author manuscript hosted by MERL.",
+    "sourceUrl": "https://www.merl.com/publications/docs/TR2020-005.pdf",
+    "evidenceNote": "Journal article verified by MERL; 99 OpenAlex citations for DOI 10.1080/00423114.2019.1697456 on 2026-09-27."
+  },
+  {
+    "publicationId": "Berntorp2014b",
+    "theme": "localization-estimation",
+    "image": "/research/out-of-sequence-estimation.png",
+    "alt": "Three aligned timelines show when sensor measurements were timestamped, when a delayed measurement arrived, and which state estimates must be updated.",
+    "caption": "A delayed measurement arrives after newer observations. The estimator uses its earlier timestamp to update the current state, rather than treating arrival order as measurement order.",
+    "credit": "Cropped Figure 1 from Berntorp, Robertsson and Årzén, IEEE Transactions on Signal Processing (2014); author copy hosted by Lund University.",
+    "sourceUrl": "https://lup.lub.lu.se/search/files/1732710/4697848.pdf",
+    "evidenceNote": "Journal article verified by Lund University; 25 OpenAlex citations for DOI 10.1109/TSP.2014.2365763 on 2026-09-27."
+  },
+  {
+    "publicationId": "Greiff2025jan",
+    "theme": "robot-autonomy",
+    "image": "/research/quadrotor-invariant-set-planning.webp",
+    "alt": "A planned quadrotor path winds around red three-dimensional obstacles, beside photos of the indoor obstacle course and the Crazyflie quadrotor used in the experiment.",
+    "caption": "A quadrotor navigates through a course of obstacles using invariant-set motion planning. The adjacent photos show the indoor experiment and the Crazyflie vehicle.",
+    "credit": "Cropped panels a–c of Figure 8 from Greiff, Sinhmar, Weiss, Berntorp and Di Cairano, IEEE Transactions on Control Systems Technology (2025); author manuscript hosted by MERL.",
+    "sourceUrl": "https://merl.com/publications/docs/TR2025-010.pdf",
+    "evidenceNote": "Journal article verified by MERL and IEEE; chosen for direct robot-autonomy and experiment fit despite its recent publication (2 OpenAlex citations on 2026-09-27)."
+  }
+]

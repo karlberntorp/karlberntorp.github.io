@@ -1,15 +1,15 @@
 ---
 title: Selected work
-description: Selected publications on motion planning, positioning, robot sensing, and vehicle localization.
+description: Selected journal publications on vehicle control, motion planning, state estimation, and robot autonomy.
 papers:
-  - id: chaves2025acc
-    summary: Develops an approach to safe interactive motion planning that combines differentiable optimal control with online preference learning.
-  - id: hu2025acc
-    summary: Studies GNSS-RTK positioning through factor-graph optimization with an adaptive model of ambiguity noise.
-  - id: zhou2025icra
-    summary: Addresses collision detection and force estimation together for dynamic quadrupedal locomotion.
-  - id: Berntorp2024nov
-    summary: Presents a framework for estimating vehicle location and mapping the road jointly from onboard sensor measurements.
+  - id: Berntorp2020jan
+    summary: Develops friction-adaptive nonlinear model predictive control for trajectory tracking on changing road surfaces.
+  - id: Berntorp2018dec
+    summary: Uses particle filtering to plan motion for autonomous road vehicles.
+  - id: Berntorp2016e
+    summary: Combines inertial, GPS, and wheel-speed measurements to estimate wheel slip and vehicle motion.
+  - id: Greiff2025jan
+    summary: Designs, analyzes, and experimentally evaluates invariant-set planning for quadrotors.
 ---
 
-These papers offer a cross-section of my work on motion planning, estimation, and robot autonomy. The [full publication record](/publications/) covers a wider range of methods and applications.
+These papers represent work on control, planning, estimation, and robot autonomy. The [full publication record](/publications/) covers a wider range of methods and applications.

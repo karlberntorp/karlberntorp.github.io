@@ -4,7 +4,7 @@ description: Research interests in planning and control, localization and estima
 lead: Estimation, planning, and control for robots and vehicles operating with uncertainty.
 ---
 
-My research sits at the intersection of estimation, decision making, and control. I study methods that account for uncertainty and constraints, then work to make them useful on vehicles and robots operating in the physical world.
+My research connects estimation, decision making, and control with the work of building autonomous systems. I develop methods for uncertainty and physical constraints, then define how to validate them in experiments and deployed systems. This has meant working across research, engineering, and product teams as well as setting technical direction for larger programs.
 
 ## Planning and control
 
@@ -16,4 +16,4 @@ Reliable autonomy depends on knowing where a system is and how it is moving. I h
 
 ## Mobile manipulation and robot autonomy
 
-At Chewy, I lead autonomy algorithm work for mobile manipulation systems, including research and development that moves from prototypes toward engineering handoff. Earlier work at WASR and Symbotic addressed routing, control, and coordination in fleets of autonomous robots. These problems bring planning, estimation, and control together under the timing and reliability requirements of real operations.
+At Chewy, I lead autonomy algorithm work for mobile manipulation systems, from research prototypes through validation and engineering handoff. Earlier work at WASR and Symbotic addressed routing, control, and coordination in fleets of autonomous robots. These problems bring planning, estimation, and control together under the timing and reliability requirements of real operations.
