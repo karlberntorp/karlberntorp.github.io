@@ -1,0 +1,18 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+---
+
+<SiteLayout title="Page not found" description="The page you requested could not be found on Karl Berntorp’s website.">
+  <div class="container not-found">
+    <p class="eyebrow">404 · Page not found</p>
+    <h1>This page isn’t here.</h1>
+    <p>The address may have changed, or the link may be out of date.</p>
+    <a class="button" href="/">Return home <span aria-hidden="true">→</span></a>
+  </div>
+</SiteLayout>
+
+<style>
+  .not-found { padding-block: 7rem 5rem; }
+  .not-found h1 { margin-bottom: 1rem; }
+  .not-found > p:not(.eyebrow) { margin-bottom: 1.75rem; color: var(--muted); font-family: var(--serif); font-size: 1.25rem; }
+</style>

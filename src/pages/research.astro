@@ -1,0 +1,56 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { Content, frontmatter } from '../content/research.md';
+import { publications } from '../lib/publications';
+
+const themes = [
+  { title: 'Planning and control', description: 'Safe decisions and feasible motion for systems with dynamic constraints.', ids: ['chaves2025acc', 'Greiff2025jan'] },
+  { title: 'Localization and estimation', description: 'Reliable position and state estimates from imperfect sensor measurements.', ids: ['hu2025acc', 'Berntorp2024nov'] },
+  { title: 'Mobile manipulation and robot autonomy', description: 'Methods that bring sensing, planning, and control together on physical robots.', ids: ['zhou2025icra', 'Greiff2025jan'] },
+];
+for (const theme of themes) {
+  for (const id of theme.ids) {
+    if (!publications.some((paper) => paper.id === id)) throw new Error(`Representative publication ${id} was not found in the bibliography.`);
+  }
+}
+---
+
+<SiteLayout title={frontmatter.title} description={frontmatter.description}>
+  <div class="container">
+    <header class="page-intro">
+      <p class="eyebrow">Research</p>
+      <h1>Research that meets the real world.</h1>
+      <p>{frontmatter.lead}</p>
+    </header>
+    <div class="research-content prose"><Content /></div>
+    <section class="representative" aria-labelledby="papers-heading">
+      <div class="section-heading"><h2 id="papers-heading">Representative papers</h2><a class="text-link" href="/publications/">Full publication list</a></div>
+      <div class="themes">
+        {themes.map((theme) => <section class="theme">
+          <h3>{theme.title}</h3>
+          <p>{theme.description}</p>
+          <ul>{theme.ids.map((id) => {
+            const paper = publications.find((entry) => entry.id === id);
+            return paper && <li><a href={`/publications/#${paper.id}`}>{paper.title}</a><span>{paper.year}</span></li>;
+          })}</ul>
+        </section>)}
+      </div>
+    </section>
+  </div>
+</SiteLayout>
+
+<style>
+  .research-content { padding-bottom: 2.3rem; }
+  .research-content :global(h2) { scroll-margin-top: 2rem; }
+  .representative { padding-block: 2rem 1.5rem; }
+  .themes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .theme { padding: 1.5rem; border: 1px solid var(--line); background: var(--soft); }
+  .theme h3 { margin: 0 0 .5rem; font-family: var(--serif); font-size: 1.35rem; }
+  .theme p { min-height: 4.6rem; margin-bottom: 1rem; color: var(--muted); font-size: .88rem; line-height: 1.55; }
+  .theme ul { list-style: none; padding: 1rem 0 0; margin: 0; border-top: 1px solid var(--line); }
+  .theme li + li { margin-top: .9rem; }
+  .theme li a { display: block; font-family: var(--serif); font-size: 1.01rem; font-weight: 600; line-height: 1.35; text-decoration: none; }
+  .theme li a:hover { text-decoration: underline; }
+  .theme li span { color: var(--muted); font-size: .75rem; }
+  @media (max-width: 800px) { .themes { grid-template-columns: 1fr; } .theme p { min-height: 0; } }
+</style>

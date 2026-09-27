@@ -1,0 +1,6 @@
+allowBuilds:
+  core-js: false
+  esbuild: true
+  fsevents: false
+storeDir: .pnpm-store
+confirmModulesPurge: false

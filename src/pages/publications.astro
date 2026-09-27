@@ -1,0 +1,133 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { patents, publications, type Publication } from '../lib/publications';
+
+const labels: Record<Publication['type'], string> = {
+  journal: 'Journal article',
+  conference: 'Conference paper',
+  'book-chapter': 'Book chapter',
+  preprint: 'Preprint',
+  report: 'Technical report',
+  thesis: 'Thesis',
+  patent: 'Granted US patent',
+};
+
+function byYear(entries: Publication[]): Array<[number, Publication[]]> {
+  const groups = new Map<number, Publication[]>();
+  for (const entry of entries) {
+    if (!groups.has(entry.year)) groups.set(entry.year, []);
+    groups.get(entry.year)!.push(entry);
+  }
+  return [...groups.entries()];
+}
+
+const publicationYears = byYear(publications);
+const patentYears = byYear(patents);
+---
+
+<SiteLayout title="Publications & patents" description="Karl Berntorp's journal articles, conference papers, other scholarly works, and granted US patents.">
+  <div class="container bibliography-page">
+    <header class="page-intro">
+      <p class="eyebrow">Research output</p>
+      <h1>Publications &amp; patents</h1>
+      <p>A record of scholarly publications and granted US patents. Entries are drawn from the September 2026 CV bibliography.</p>
+      <div class="summary" aria-label="Bibliography summary">
+        <span><strong>{publications.length}</strong> publications</span>
+        <span><strong>{patents.length}</strong> granted US patents</span>
+      </div>
+      <nav class="page-jump" aria-label="On this page">
+        <a href="#publications">Publications</a>
+        <a href="#patents">Patents</a>
+        <a href="/files/Karl_Berntorp_CV.pdf">Download CV <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <section id="publications" aria-labelledby="publications-heading" class="bibliography-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Scholarly work</p>
+          <h2 id="publications-heading">Publications</h2>
+        </div>
+      </div>
+      {publicationYears.map(([year, entries]) => (
+        <section class="year-group" aria-labelledby={`publications-${year}`}>
+          <h3 id={`publications-${year}`}>{year}</h3>
+          <ol class="entry-list">
+            {entries.map((entry) => (
+              <li id={entry.id} data-type={entry.type} class="entry">
+                <div class="entry-topline"><span class="category">{labels[entry.type]}</span></div>
+                <h4>
+                  {entry.url ? <a href={entry.url}>{entry.title}<span class="external" aria-hidden="true">↗</span></a> : entry.title}
+                </h4>
+                <p class="authors">{entry.authors.join(', ')}</p>
+                <p class="venue">{entry.venue}{entry.doi && <span class="doi"> · DOI: {entry.doi}</span>}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+    </section>
+
+    <section id="patents" aria-labelledby="patents-heading" class="bibliography-section patents-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Inventions</p>
+          <h2 id="patents-heading">Granted US patents</h2>
+        </div>
+      </div>
+      {patentYears.map(([year, entries]) => (
+        <section class="year-group" aria-labelledby={`patents-${year}`}>
+          <h3 id={`patents-${year}`}>{year}</h3>
+          <ol class="entry-list">
+            {entries.map((entry) => (
+              <li id={entry.id} data-type={entry.type} class="entry">
+                <div class="entry-topline"><span class="category">{labels[entry.type]}</span></div>
+                <h4>
+                  {entry.url ? <a href={entry.url}>{entry.title}<span class="external" aria-hidden="true">↗</span></a> : entry.title}
+                </h4>
+                <p class="authors">{entry.authors.join(', ')}</p>
+                <p class="venue">{entry.venue}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
+    </section>
+  </div>
+</SiteLayout>
+
+<style>
+  .bibliography-page { padding-top: 4rem; padding-bottom: 6rem; }
+  .page-intro { max-width: 52rem; padding-top: 0; }
+  .page-intro h1 { max-width: 13ch; }
+  .page-intro > p:not(.eyebrow) { max-width: 42rem; }
+  .summary { display: flex; flex-wrap: wrap; gap: .7rem 2rem; margin: 1.7rem 0; color: #50657a; font-family: 'DM Sans', sans-serif; font-size: .9rem; }
+  .summary strong { font-size: 1.35rem; font-weight: 700; color: #122a44; margin-right: .3rem; }
+  .page-jump { display: flex; flex-wrap: wrap; gap: .65rem 1.5rem; margin: 2rem 0 0; font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 600; }
+  .page-jump a { color: #27679e; text-decoration: underline; text-underline-offset: .25em; }
+  .bibliography-section { margin-top: 5rem; }
+  .section-heading { margin-bottom: 1.8rem; }
+  .section-heading h2 { margin: .25rem 0 0; }
+  .year-group { display: grid; grid-template-columns: minmax(5rem, 8rem) minmax(0, 1fr); border-top: 1px solid #dce5ed; padding: 2rem 0 1rem; }
+  .year-group h3 { margin: 0; color: #27679e; font-family: 'DM Sans', sans-serif; font-size: 1.05rem; font-weight: 700; }
+  .entry-list { margin: 0; padding: 0; list-style: none; }
+  .entry { padding: 0 0 1.8rem; margin-bottom: 1.8rem; border-bottom: 1px solid #e8edf2; scroll-margin-top: 6rem; }
+  .entry:last-child { border: 0; margin-bottom: 0; }
+  .entry-topline { margin-bottom: .55rem; }
+  .category { color: #27679e; font-family: 'DM Sans', sans-serif; font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .entry h4 { max-width: 54rem; margin: 0 0 .6rem; font-family: 'Source Serif 4', Georgia, serif; font-size: 1.23rem; font-weight: 600; line-height: 1.35; }
+  .entry h4 a { color: #122a44; text-decoration: none; }
+  .entry h4 a:hover { color: #27679e; text-decoration: underline; text-underline-offset: .17em; }
+  .external { display: inline-block; margin-left: .35rem; font-family: 'DM Sans', sans-serif; font-size: .8em; font-weight: 400; }
+  .authors, .venue { max-width: 56rem; margin: .3rem 0 0; line-height: 1.5; }
+  .authors { color: #344e65; font-size: .95rem; }
+  .venue { color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: .875rem; }
+  .doi { overflow-wrap: anywhere; }
+  .patents-section { margin-top: 5.5rem; }
+  @media (max-width: 700px) {
+    .bibliography-page { padding-top: 2.7rem; }
+    .year-group { display: block; padding-top: 1.4rem; }
+    .year-group h3 { margin-bottom: 1.5rem; }
+    .entry h4 { font-size: 1.1rem; }
+  }
+</style>
