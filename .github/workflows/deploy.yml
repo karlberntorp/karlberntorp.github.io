@@ -23,7 +23,6 @@ jobs:
       - name: Build and validate static site
         uses: withastro/action@v6
         with:
-          package-manager: pnpm@11
           build-cmd: pnpm run check && pnpm run build && node scripts/check-publications.mjs
 
   deploy:
