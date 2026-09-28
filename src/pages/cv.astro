@@ -9,10 +9,6 @@ import { Content, frontmatter } from '../content/cv.md';
       <p class="eyebrow">Curriculum vitae</p>
       <h1>Research and experience.</h1>
       <p>{frontmatter.lead}</p>
-      <div class="actions">
-        <a class="button" href="/files/Karl_Berntorp_CV.pdf" download>Download full CV <span aria-hidden="true">↓</span></a>
-        <a class="button button-secondary" href="https://scholar.google.com/citations?user=cwUgs64AAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-      </div>
     </header>
     <section class="cv-content" aria-label="CV overview">
       <div class="section-heading"><h2>Overview</h2></div>
@@ -27,7 +23,6 @@ import { Content, frontmatter } from '../content/cv.md';
 
 <style>
   .cv-intro { max-width: 870px; }
-  .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
   .cv-content { padding-block: 2.5rem 3rem; }
   .cv-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding-block: 1rem 2rem; }
   .cv-links > div { padding: 2rem; background: var(--soft); border: 1px solid var(--line); }

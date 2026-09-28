@@ -20,7 +20,7 @@ pnpm run check:publications
 pnpm run preview
 ```
 
-The bibliography check verifies the source record counts, all generated citation anchors, publication categories, representative accented names, and the downloadable CV. It reads the built `dist/` output, so run it after `pnpm run build`.
+The bibliography check verifies the source record counts, all generated citation anchors, publication categories, representative accented names, and that the static site contains no PDFs. It reads the built `dist/` output, so run it after `pnpm run build`.
 
 ## Update site copy
 
@@ -34,7 +34,7 @@ Research figures live in [`public/research/`](public/research/) and are describe
 
 ## Update publications and CV
 
-The website keeps copies of the dated September 27, 2026 CV sources in [`src/data/publications.bib`](src/data/publications.bib), [`src/data/patents.bib`](src/data/patents.bib), and [`public/files/Karl_Berntorp_CV.pdf`](public/files/Karl_Berntorp_CV.pdf). The originals remain in the private CV working folder. Edit or replace these copies when a new CV is approved. The publication page and selected-work links are generated from the BibTeX citation keys at build time by [`src/lib/publications.ts`](src/lib/publications.ts). Preserve citation keys when possible to keep existing page anchors stable.
+The website keeps bibliographic records in [`src/data/publications.bib`](src/data/publications.bib) and [`src/data/patents.bib`](src/data/patents.bib). Update these files when approved records change. The publication page and selected-work links are generated from the BibTeX citation keys at build time by [`src/lib/publications.ts`](src/lib/publications.ts). Preserve citation keys when possible to keep existing page anchors stable. The CV page is a text-only career overview.
 
 The September 2026 sources contain 133 publications and 48 granted US patents. If the counts change intentionally, update the expectations in [`scripts/check-publications.mjs`](scripts/check-publications.mjs) after reviewing the new records. The page distinguishes journal articles, conference papers, book chapters, preprints, reports, theses, and patents. Keep patent applications out of the granted-patent file unless they become grants.
 

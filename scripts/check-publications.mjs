@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 
 const root = new URL('..', import.meta.url);
 const read = (path) => readFileSync(new URL(path, root), 'utf8');
@@ -36,7 +36,7 @@ for (const key of ['chaves2025acc', 'hu2025acc', 'zhou2025icra', 'Berntorp2024no
 for (const doi of ['10.23919/ACC63710.2025.11107681', '10.23919/ACC63710.2025.11107797', '10.1109/ICRA55743.2025.11128205', '10.1016/j.conengprac.2024.106112']) {
   assert.ok(page.includes(`href="https://doi.org/${doi}"`), `Featured-paper DOI link is missing: ${doi}`);
 }
-assert.ok(existsSync(new URL('dist/files/Karl_Berntorp_CV.pdf', root)), 'Downloadable CV PDF is missing.');
+assert.equal(readdirSync(new URL('dist/', root), { recursive: true }).filter((file) => file.toLowerCase().endsWith('.pdf')).length, 0, 'A PDF was included in the static site.');
 assert.ok(!page.includes('\\AA'), 'Unconverted LaTeX accent remains in static page.');
 
-console.log(`Verified ${publicationKeys.length} publications, ${patentKeys.length} patents, categories, accents, anchors, and CV PDF.`);
+console.log(`Verified ${publicationKeys.length} publications, ${patentKeys.length} patents, categories, accents, anchors, and no published PDFs.`);
