@@ -19,12 +19,26 @@ const portraitFile = ['portrait.webp', 'portrait.jpg', 'portrait.png'].find((nam
   <section class="hero">
     <div class:list={['container', 'hero-grid', { 'with-portrait': portraitFile }]}>
       <div>
-        <p class="eyebrow">Research scientist · Robotics &amp; autonomy</p>
+        <p class="eyebrow">Research leader · Robotics &amp; autonomy</p>
         <h1>Karl Berntorp</h1>
         <p class="hero-lead">{home.lead}</p>
+        <dl class="hero-metrics" aria-label="Research output">
+          <div>
+            <dt>Publications</dt>
+            <dd><span aria-hidden="true">≈130</span><span class="sr-only">Approximately 130</span></dd>
+          </div>
+          <div>
+            <dt>Patents</dt>
+            <dd><span aria-hidden="true">≈50</span><span class="sr-only">Approximately 50</span></dd>
+          </div>
+          <div>
+            <dt>Companies founded or co-founded</dt>
+            <dd>2</dd>
+          </div>
+        </dl>
         <div class="hero-actions">
           <a class="button" href="/research/">Explore research <span aria-hidden="true">→</span></a>
-          <a class="button button-secondary" href="/cv/">Career overview <span aria-hidden="true">→</span></a>
+          <a class="button button-secondary" href="/experience/">Experience <span aria-hidden="true">→</span></a>
         </div>
       </div>
       <aside class:list={['hero-aside', { 'has-portrait': portraitFile }]} aria-label="Current role and research areas">
@@ -48,7 +62,7 @@ const portraitFile = ['portrait.webp', 'portrait.jpg', 'portrait.png'].find((nam
         <p class="eyebrow">Profile links</p>
         <a href="mailto:karl.o.berntorp@ieee.org">Email <span aria-hidden="true">↗</span></a>
         <a href="https://scholar.google.com/citations?user=cwUgs64AAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-        <a href="/cv/">Career overview <span aria-hidden="true">→</span></a>
+        <a href="/experience/">Experience <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -84,7 +98,12 @@ const portraitFile = ['portrait.webp', 'portrait.jpg', 'portrait.png'].find((nam
   .hero-grid { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(230px, .8fr); align-items: end; gap: clamp(2.5rem, 8vw, 7rem); }
   .hero-grid.with-portrait { align-items: start; }
   h1 { max-width: 780px; margin-bottom: 1.45rem; }
-  .hero-lead { max-width: 650px; margin-bottom: 2rem; color: #3e5368; font-family: var(--serif); font-size: clamp(1.2rem, 2.2vw, 1.6rem); line-height: 1.55; }
+  .hero-lead { max-width: 650px; margin-bottom: 1.8rem; color: #3e5368; font-family: var(--serif); font-size: clamp(1.2rem, 2.2vw, 1.6rem); line-height: 1.55; }
+  .hero-metrics { display: flex; flex-wrap: wrap; gap: 1rem clamp(1rem, 3vw, 2rem); max-width: 650px; margin: 0 0 2rem; padding: 1.25rem 0 0; border-top: 1px solid #cad9e5; }
+  .hero-metrics div { display: flex; flex: 1 1 9rem; flex-direction: column; }
+  .hero-metrics dd { margin: 0; color: var(--navy); font-family: var(--serif); font-size: clamp(2.15rem, 4vw, 3rem); font-weight: 600; letter-spacing: -.04em; line-height: 1.1; }
+  .hero-metrics dt { margin-top: .25rem; color: var(--blue-dark); font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .hero-metrics dd { order: -1; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
   .hero-aside { padding: 0 0 .3rem 1.7rem; border-left: 1px solid #cad9e5; }
   .hero-aside.has-portrait { padding-left: 0; border-left: 0; }

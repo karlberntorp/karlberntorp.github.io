@@ -24,7 +24,7 @@ The bibliography check verifies the source record counts, all generated citation
 
 ## Update site copy
 
-Page text and selected-work summaries live in [`src/content/`](src/content/). Update those Markdown files for biography, research, and CV copy. The featured paper cards on the home page use citation keys from the bibliography; if a key changes, update its `id` in the frontmatter of [`src/content/selected-work.md`](src/content/selected-work.md) and check that the resulting link reaches the corresponding publication anchor.
+Page text and selected-work summaries live in [`src/content/`](src/content/). Update those Markdown files for biography, research, and Experience copy. The Experience page uses [`src/content/cv.md`](src/content/cv.md). The featured paper cards on the home page use citation keys from the bibliography; if a key changes, update its `id` in the frontmatter of [`src/content/selected-work.md`](src/content/selected-work.md) and check that the resulting link reaches the corresponding publication anchor.
 
 ## Update photos and research figures
 
@@ -32,11 +32,11 @@ The home page uses [`public/portrait.jpg`](public/portrait.jpg), a 200 × 250 ph
 
 Research figures live in [`public/research/`](public/research/) and are described in [`src/data/research-highlights.json`](src/data/research-highlights.json). Each record names a bibliography `publicationId`, one of the three research `theme` keys, a local `/research/…` image path, descriptive `alt` text, a `caption`, and the original `sourceUrl`. The page uses the bibliography title, journal, and year for its linked source line. Keep the image, caption, and source aligned with the cited paper; optimize images for the web without enlarging them. The build fails if a theme has no figure or a listed image or publication is missing.
 
-## Update publications and CV
+## Update publications and Experience
 
-The website keeps bibliographic records in [`src/data/publications.bib`](src/data/publications.bib) and [`src/data/patents.bib`](src/data/patents.bib). Update these files when approved records change. The publication page and selected-work links are generated from the BibTeX citation keys at build time by [`src/lib/publications.ts`](src/lib/publications.ts). Preserve citation keys when possible to keep existing page anchors stable. The CV page is a text-only career overview.
+The website keeps bibliographic records in [`src/data/publications.bib`](src/data/publications.bib) and [`src/data/patents.bib`](src/data/patents.bib). Update these files when approved records change. The publication page and selected-work links are generated from the BibTeX citation keys at build time by [`src/lib/publications.ts`](src/lib/publications.ts). Preserve citation keys when possible to keep existing page anchors stable. The text-only Experience page is at `/experience/`; `/cv/` redirects there for existing links.
 
-The September 2026 sources contain 133 publications and 48 granted US patents. If the counts change intentionally, update the expectations in [`scripts/check-publications.mjs`](scripts/check-publications.mjs) after reviewing the new records. The page distinguishes journal articles, conference papers, book chapters, preprints, reports, theses, and patents. Keep patent applications out of the granted-patent file unless they become grants.
+The September 2026 sources contain 133 publications and 48 granted US patents. The home page presents these as approximately 130 publications and approximately 50 patents, alongside two companies founded or co-founded. If the counts change intentionally, update the expectations in [`scripts/check-publications.mjs`](scripts/check-publications.mjs) and the home page figures after reviewing the new records. The publication page distinguishes journal articles, conference papers, book chapters, preprints, reports, theses, and patents. Keep patent applications out of the granted-patent file unless they become grants.
 
 ## GitHub Pages
 

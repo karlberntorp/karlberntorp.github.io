@@ -1,0 +1,32 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { Content, frontmatter } from '../content/cv.md';
+---
+
+<SiteLayout title={frontmatter.title} description={frontmatter.description}>
+  <div class="container">
+    <header class="page-intro experience-intro">
+      <p class="eyebrow">Career path</p>
+      <h1>Research and experience.</h1>
+      <p>{frontmatter.lead}</p>
+    </header>
+    <section class="experience-content" aria-label="Career overview">
+      <div class="section-heading"><h2>Career overview</h2></div>
+      <div class="prose"><Content /></div>
+    </section>
+    <section class="experience-links" aria-label="More information">
+      <div><p class="eyebrow">Research output</p><h2>Publications &amp; patents</h2><p>Explore peer-reviewed research and granted patents across autonomous systems, localization, and control.</p><a class="text-link" href="/publications/">Browse publications</a></div>
+      <div><p class="eyebrow">Contact</p><h2>Get in touch</h2><p>For research and professional inquiries, contact me by email.</p><a class="text-link" href="mailto:karl.o.berntorp@ieee.org">karl.o.berntorp@ieee.org</a></div>
+    </section>
+  </div>
+</SiteLayout>
+
+<style>
+  .experience-intro { max-width: 870px; }
+  .experience-content { padding-block: 2.5rem 3rem; }
+  .experience-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding-block: 1rem 2rem; }
+  .experience-links > div { padding: 2rem; background: var(--soft); border: 1px solid var(--line); }
+  .experience-links h2 { margin-bottom: .6rem; font-size: 1.8rem; }
+  .experience-links p:not(.eyebrow) { max-width: 380px; color: var(--muted); }
+  @media (max-width: 680px) { .experience-links { grid-template-columns: 1fr; } .experience-links > div { padding: 1.5rem; } }
+</style>
