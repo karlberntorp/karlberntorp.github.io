@@ -12,10 +12,12 @@ type Highlight = {
   image: string;
   alt: string;
   caption: string;
-  credit: string;
   sourceUrl: string;
 };
 const highlights = highlightsData as Highlight[];
+const expandedVenues: Record<string, string> = {
+  'IEEE Trans. Signal Process.': 'IEEE Transactions on Signal Processing',
+};
 
 const themes = [
   { key: 'planning-control', title: 'Planning and control', description: 'Safe decisions and feasible motion for systems with dynamic constraints.', ids: ['Berntorp2020jan', 'Berntorp2018dec'] },
@@ -50,10 +52,12 @@ for (const highlight of highlights) {
       <div class="themes">
         {themes.map((theme) => <section class="theme" aria-labelledby={`highlight-${theme.key}`}>
           <div class="theme-media">
-            {highlights.filter((item) => item.theme === theme.key).map((highlight) => <figure>
+            {highlights.filter((item) => item.theme === theme.key).map((highlight) => {
+              const paper = publicationById.get(highlight.publicationId)!;
+              return <figure>
               <div class="figure-frame"><img src={highlight.image} alt={highlight.alt} loading="lazy" decoding="async" /></div>
-              <figcaption>{highlight.caption} <span class="credit">Credit: <a href={highlight.sourceUrl} target="_blank" rel="noopener noreferrer">{highlight.credit}<span class="sr-only"> (opens in a new tab)</span></a></span></figcaption>
-            </figure>)}
+              <figcaption>{highlight.caption} <span class="source"><a href={highlight.sourceUrl} target="_blank" rel="noopener noreferrer">From <cite>{paper.title}</cite>, {expandedVenues[paper.venue] ?? paper.venue} ({paper.year}).<span class="sr-only"> (opens in a new tab)</span></a></span></figcaption>
+            </figure>})}
           </div>
           <div class="theme-copy">
             <p class="eyebrow">Research area</p>
@@ -82,8 +86,9 @@ for (const highlight of highlights) {
   .figure-frame { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #f4f7f9; }
   .figure-frame img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
   figcaption { padding: .7rem .15rem .15rem; color: #42576b; font-size: .8rem; line-height: 1.5; }
-  .credit { display: block; margin-top: .3rem; color: var(--muted); font-size: .75rem; }
-  .credit a { color: inherit; }
+  .source { display: block; margin-top: .3rem; color: var(--muted); font-size: .75rem; }
+  .source a { color: inherit; }
+  .source cite { font-style: normal; }
   .theme-copy { min-width: 0; padding: clamp(1.4rem, 3vw, 2.2rem); }
   .theme-copy .eyebrow { margin-bottom: .55rem; }
   .theme h3 { margin: 0 0 .65rem; font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 2rem); }

@@ -30,7 +30,7 @@ Page text and selected-work summaries live in [`src/content/`](src/content/). Up
 
 The home page uses [`public/portrait.jpg`](public/portrait.jpg), a 200 × 250 photo supplied by Karl. Replace it with an approved portrait at the same path; keep the displayed width at or below the file's native width. The home page also detects `portrait.webp` or `portrait.png` and shows the role panel without a photo when no portrait file is present.
 
-Research figures live in [`public/research/`](public/research/) and are described in [`src/data/research-highlights.json`](src/data/research-highlights.json). Each record names a bibliography `publicationId`, one of the three research `theme` keys, a local `/research/…` image path, descriptive `alt` text, a `caption`, a `credit`, and the original `sourceUrl`. Keep the image, caption, and attribution aligned with the cited paper; optimize images for the web without enlarging them. The build fails if a theme has no figure or a listed image or publication is missing.
+Research figures live in [`public/research/`](public/research/) and are described in [`src/data/research-highlights.json`](src/data/research-highlights.json). Each record names a bibliography `publicationId`, one of the three research `theme` keys, a local `/research/…` image path, descriptive `alt` text, a `caption`, and the original `sourceUrl`. The page uses the bibliography title, journal, and year for its linked source line. Keep the image, caption, and source aligned with the cited paper; optimize images for the web without enlarging them. The build fails if a theme has no figure or a listed image or publication is missing.
 
 ## Update publications and CV
 
