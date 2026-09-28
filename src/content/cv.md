@@ -10,6 +10,6 @@ Previously, I was an Algorithm Leader and Distinguished Scientist at Symbotic an
 
 Across these roles, I have set research strategy and success metrics, built validation frameworks, led cross-functional programs, and worked with senior leadership to bring research into deployed systems. I have managed and mentored PhD researchers and led multi-group industrial research. I have received repeated company awards for technical contributions and business impact.
 
-I founded AB Berntec in Sweden in 2017 and continue to provide engineering consulting, including remote consulting for Mitsubishi Electric Research Laboratories. I co-founded AB Benoso, an engineering consultancy active from 2013 to 2019 that served industrial clients including Volvo and received Vinnova funding.
+I founded AB Berntec, an engineering consultancy. I also co-founded AB Benoso, an engineering consultancy active from 2013 to 2019 that served industrial clients including Volvo and received Vinnova funding.
 
 I earned a PhD in Automatic Control from Lund University in 2014 and an MSc in Engineering Physics there in 2008. I have authored approximately 130 publications and am named on approximately 50 patents; the publication record on this site lists 48 granted US patents. I am an IEEE Senior Member and have served as an Associate Editor of *IEEE Transactions on Control Systems Technology* and on the inaugural Technology Conference Editorial Board for the *IEEE Conference on Control Technology and Applications*.
