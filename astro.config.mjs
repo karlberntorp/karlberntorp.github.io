@@ -3,5 +3,5 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://karlberntorp.github.io',
-  integrations: [sitemap({ filter: (page) => new URL(page).pathname !== '/cv/' })],
+  integrations: [sitemap({ filter: (page) => !['/cv/', '/experience/'].includes(new URL(page).pathname) })],
 });
