@@ -41,18 +41,17 @@ const portraitFile = ['portrait.webp', 'portrait.jpg', 'portrait.png'].find((nam
           <a class="button" href="/research/">Explore research <span aria-hidden="true">→</span></a>
           <a class="button button-secondary" href="#experience">Experience <span aria-hidden="true">↓</span></a>
         </div>
-        <nav class="hero-quick-links" aria-label="Profile links">
-          <a href="mailto:karl.o.berntorp@ieee.org">Email</a>
-          <a href="https://scholar.google.com/citations?user=cwUgs64AAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-          <a href="https://orcid.org/0000-0002-6809-6657" target="_blank" rel="noopener noreferrer">ORCID <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-        </nav>
       </div>
-      <aside class:list={['hero-aside', { 'has-portrait': portraitFile }]} aria-label="Current role and research areas">
+      <aside class:list={['hero-aside', { 'has-portrait': portraitFile }]} aria-label="Current role, profile links, and research areas">
         {portraitFile && <img class="portrait" src={`/${portraitFile}`} alt="Karl Berntorp" width="200" height="250" decoding="async" />}
         <div class="hero-aside-rule" aria-hidden="true"></div>
         <p class="eyebrow">Current role</p>
         <p class="aside-role">Principal Research Scientist</p>
         <p class="aside-place">Chewy</p>
+        <nav class="aside-links" aria-label="Profile links">
+          <a href="mailto:karl.o.berntorp@ieee.org">Email</a>
+          <a href="https://scholar.google.com/citations?user=cwUgs64AAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+        </nav>
         <div class="aside-divider"></div>
         <p class="eyebrow">Focus</p>
         <p class="aside-focus">Mobile manipulation<br />Autonomous systems<br />Planning &amp; estimation</p>
@@ -103,9 +102,6 @@ const portraitFile = ['portrait.webp', 'portrait.jpg', 'portrait.png'].find((nam
   .hero-metrics dt { margin-top: .25rem; color: var(--blue-dark); font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
   .hero-metrics dd { order: -1; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
-  .hero-quick-links { display: flex; flex-wrap: wrap; gap: .35rem 1.25rem; margin-top: 1.3rem; }
-  .hero-quick-links a { color: var(--blue-dark); font-size: .83rem; font-weight: 600; text-decoration-color: #9bb7d0; text-underline-offset: .2em; }
-  .hero-quick-links a:hover { text-decoration-color: currentColor; }
   .hero-aside { padding: 0 0 .3rem 1.7rem; border-left: 1px solid #cad9e5; }
   .hero-aside.has-portrait { padding-left: 0; border-left: 0; }
   .portrait { display: block; width: 200px; max-width: 100%; height: auto; margin-bottom: 1.5rem; border: 1px solid var(--line); background: var(--soft); }
@@ -113,6 +109,9 @@ const portraitFile = ['portrait.webp', 'portrait.jpg', 'portrait.png'].find((nam
   .hero-aside .eyebrow { margin-bottom: .45rem; }
   .aside-role { margin: 0; color: var(--navy); font-family: var(--serif); font-size: 1.42rem; line-height: 1.25; }
   .aside-place { margin: .2rem 0 0; color: var(--muted); }
+  .aside-links { display: flex; flex-wrap: wrap; gap: .35rem 1rem; margin-top: .85rem; }
+  .aside-links a { color: var(--blue-dark); font-size: .82rem; font-weight: 700; text-decoration-color: #9bb7d0; text-underline-offset: .2em; }
+  .aside-links a:hover { text-decoration-color: currentColor; }
   .aside-divider { height: 1px; margin-block: 1.5rem; background: var(--line); }
   .aside-focus { margin: 0; color: #3e5368; line-height: 1.8; }
   .experience-section { padding-block: 5.5rem 6rem; scroll-margin-top: 1rem; }
