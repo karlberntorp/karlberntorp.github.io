@@ -1,0 +1,44 @@
+---
+interface ExperienceEntry {
+  id: string;
+  employer: string;
+  role: string;
+  dates: string;
+  context?: string;
+  bullets: string[];
+}
+interface Props {
+  entries: ExperienceEntry[];
+  supporting: { label: string; text: string }[];
+}
+const { entries, supporting } = Astro.props;
+---
+
+<section id="experience" class="container experience-section" aria-labelledby="experience-heading">
+  <div class="section-heading"><h2 id="experience-heading">Experience</h2></div>
+  <div class="experience-content">
+    {entries.map((entry) => <article class="experience-entry" aria-labelledby={`${entry.id}-heading`}>
+      <h3 id={`${entry.id}-heading`}>{entry.employer}</h3>
+      <p class="experience-dates">{entry.dates}</p>
+      <p class="experience-role">{entry.role}</p>
+      {entry.context && <p>{entry.context}</p>}
+      <ul>{entry.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
+    </article>)}
+    <div class="supporting">
+      {supporting.map(({ label, text }) => <p><strong>{label}:</strong> {text}</p>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience-section { padding-block: 4rem 5rem; scroll-margin-top: 1rem; }
+  .experience-content { max-width: 800px; color: #33465a; }
+  .experience-entry + .experience-entry { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+  .experience-entry h3 { margin-bottom: .4rem; font-family: var(--serif); font-size: 1.65rem; }
+  .experience-dates { margin-bottom: .3rem; color: var(--muted); font-size: .9rem; }
+  .experience-role { margin-bottom: 1rem; color: var(--blue-dark); font-weight: 600; }
+  .experience-entry ul { margin-block: .8rem 0; padding-left: 1.2rem; }
+  .experience-entry li + li { margin-top: .6rem; }
+  .supporting { border-top: 1px solid var(--line); margin-top: 2rem; padding-top: 1.5rem; font-size: .95rem; }
+  .supporting p:last-child { margin-bottom: 0; }
+</style>

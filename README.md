@@ -24,7 +24,17 @@ The bibliography check verifies the source record counts, all generated citation
 
 ## Update site copy
 
-Page text and selected-work summaries live in [`src/content/`](src/content/). The home page hero uses the frontmatter in [`src/content/home.md`](src/content/home.md), while its Experience section uses [`src/content/cv.md`](src/content/cv.md). The featured paper cards on the home page use citation keys from the bibliography; if a key changes, update its `id` in the frontmatter of [`src/content/selected-work.md`](src/content/selected-work.md) and check that the resulting link reaches the corresponding publication anchor.
+Public copy lives in `src/content/` and `src/data/impact-highlights.ts`:
+
+- `home.md`: homepage introduction, metadata, and contact copy.
+- `impact-highlights.ts`: the three selected industrial outcomes, with typed IDs, headings, and descriptions.
+- `cv.md`: selected public experience entries and supporting education/service and entrepreneurship paragraphs. This is curated website copy, not a CV document.
+- `selected-work.md`: the existing four selected papers and summaries. Preserve citation keys so links reach the bibliography anchors.
+- `research.md`: the Research page narrative.
+
+The homepage composes `HomeHero`, `SelectedImpact`, `ExperienceSummary`, and `SelectedResearch`, with a small contact section inline. Each component owns its section styles; common styling stays in `global.css`. Experience remains at `/#experience`, and the shared navigation links there from every page. Research and Publications remain separate pages.
+
+Keep private reference documents, full CV extractions, archives, and iCloud paths out of the repository and build. There is no CV download or automatic document import. Preserve context and shared attribution when editing outcome claims; distinguish production results from experiments and prototypes.
 
 ## Update photos and research figures
 
@@ -36,7 +46,7 @@ Research figures live in [`public/research/`](public/research/) and are describe
 
 The website keeps bibliographic records in [`src/data/publications.bib`](src/data/publications.bib) and [`src/data/patents.bib`](src/data/patents.bib). Update these files when approved records change. The publication page and selected-work links are generated from the BibTeX citation keys at build time by [`src/lib/publications.ts`](src/lib/publications.ts). Preserve citation keys when possible to keep existing page anchors stable. The Experience section is at `/#experience`; the former `/experience/` and `/cv/` URLs redirect there for existing links.
 
-The September 2026 sources contain 133 publications and 48 granted US patents. The home page presents these as approximately 130 publications and approximately 50 patents, alongside two companies founded or co-founded. If the counts change intentionally, update the expectations in [`scripts/check-publications.mjs`](scripts/check-publications.mjs) and the home page figures after reviewing the new records. The publication page distinguishes journal articles, conference papers, book chapters, preprints, reports, theses, and patents. Keep patent applications out of the granted-patent file unless they become grants.
+The September 2026 sources contain 133 publications and 48 granted US patents. The home page presents these as approximately 130 publications and approximately 50 patents, as research credentials; entrepreneurship appears in Experience. If the counts change intentionally, update the expectations in [`scripts/check-publications.mjs`](scripts/check-publications.mjs) and the home page figures after reviewing the new records. The publication page distinguishes journal articles, conference papers, book chapters, preprints, reports, theses, and patents. Keep patent applications out of the granted-patent file unless they become grants.
 
 ## GitHub Pages
 
