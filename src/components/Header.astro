@@ -14,7 +14,7 @@ const links = [
     <a class="site-name" href="/" aria-label="Karl Berntorp, home">Karl Berntorp<span class="site-name-dot" aria-hidden="true">.</span></a>
     <nav aria-label="Main navigation">
       <ul class="nav-list">
-        {links.map(({ href, label }) => <li><a href={href} aria-current={currentPath === href ? 'page' : undefined}>{label}</a></li>)}
+        {links.map(({ href, label }) => <li><a href={href} aria-current={currentPath === href ? 'page' : (href === '/research/' && currentPath.startsWith('/research/')) || (href === '/' && currentPath.startsWith('/impact/')) ? 'location' : undefined}>{label}</a></li>)}
       </ul>
     </nav>
   </div>

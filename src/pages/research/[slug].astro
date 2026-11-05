@@ -1,0 +1,63 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ResearchFigure from '../../components/ResearchFigure.astro';
+import { researchProjects } from '../../lib/research-projects';
+import { expandedVenues } from '../../lib/research-highlights';
+
+export function getStaticPaths() {
+  return researchProjects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+interface Props { project: (typeof researchProjects)[number] }
+const { project } = Astro.props;
+const { Content, paper, figure } = project;
+---
+
+<SiteLayout title={project.title} description={project.description}>
+  <article class="container project">
+    <header class="page-intro">
+      <p class="eyebrow">Selected research · {paper.year}</p>
+      <h1>{project.title}</h1>
+      <p>{project.description}</p>
+    </header>
+    <div class="project-figure"><ResearchFigure figure={figure} paper={paper} /></div>
+    <div class="prose project-copy"><Content /></div>
+    {project.youtubeVideoId && <section class="project-video" aria-labelledby="video-heading">
+      <h2 id="video-heading">Demonstration</h2>
+      <p>{project.videoCaption}</p>
+      <iframe src={`https://www.youtube-nocookie.com/embed/${project.youtubeVideoId}`} title={project.videoTitle} loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <a class="video-link" href={`https://www.youtube.com/watch?v=${project.youtubeVideoId}`} target="_blank" rel="noopener noreferrer">Watch on YouTube<span class="sr-only">: {project.videoTitle} (opens in a new tab)</span> <span aria-hidden="true">↗</span></a>
+    </section>}
+    <section class="publication" aria-labelledby="publication-heading">
+      <p class="eyebrow" id="publication-heading">Publication</p>
+      <h2><a href={`/publications/#${paper.id}`}>{paper.title}</a></h2>
+      <p>{expandedVenues[paper.venue] ?? paper.venue} · {paper.year}</p>
+      <a href={`/publications/#${paper.id}`}>View bibliography entry <span aria-hidden="true">→</span></a>
+    </section>
+    <nav class="project-navigation" aria-label="Research navigation">
+      <a href="/#selected-heading"><span aria-hidden="true">← </span>Back to Selected research</a>
+      <a href="/research/">Research overview <span aria-hidden="true">→</span></a>
+    </nav>
+  </article>
+</SiteLayout>
+
+<style>
+  .project { max-width: 900px; }
+  .page-intro { max-width: 850px; }
+  .page-intro h1 { font-size: clamp(2.35rem, 5vw, 4rem); }
+  .project-figure { margin-block: .5rem 3rem; padding: 1rem; border: 1px solid var(--line); }
+  .project-copy { margin-inline: auto; }
+  .project-video { margin-block: 3rem; }
+  .project-video h2 { font-size: 1.8rem; }
+  .project-video p { color: var(--muted); max-width: 65ch; }
+  iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: var(--soft); }
+  .video-link { display: inline-block; margin-top: .8rem; font-size: .9rem; font-weight: 600; }
+  .publication { margin-top: 3rem; padding: 1.6rem; border: 1px solid var(--line); background: var(--soft); }
+  .publication h2 { font-size: clamp(1.3rem, 2.5vw, 1.65rem); line-height: 1.35; }
+  .publication h2 a { text-decoration: none; }
+  .publication h2 a:hover { text-decoration: underline; }
+  .publication p { margin-bottom: .5rem; font-size: .9rem; }
+  .publication > a { display: inline-block; margin-top: .5rem; font-size: .9rem; font-weight: 600; }
+  .project-navigation { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 2rem; font-size: .9rem; font-weight: 600; }
+  @media (max-width: 680px) { .project-figure { padding: .65rem; } .publication { padding: 1.2rem; } }
+</style>

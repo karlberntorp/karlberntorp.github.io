@@ -6,7 +6,9 @@
     "alt": "Experimental double lane-change plots on snow: a black dashed reference path, red dotted fixed-model response, and blue solid friction-adaptive response, with tracking and vehicle-state traces below.",
     "caption": "On a snow-covered track, the friction-adaptive controller (blue) followed the reference path (black dashed) more closely through a double lane change than the controller using an asphalt tire model (red dotted).",
     "sourceUrl": "https://www.merl.com/publications/docs/TR2020-005.pdf",
-    "evidenceNote": "Journal article verified by MERL; 99 OpenAlex citations for DOI 10.1080/00423114.2019.1697456 on 2026-09-27."
+    "evidenceNote": "Journal article verified by MERL; 99 OpenAlex citations for DOI 10.1080/00423114.2019.1697456 on 2026-09-27.",
+    "width": 1462,
+    "height": 1116
   },
   {
     "publicationId": "Berntorp2014b",
@@ -15,7 +17,9 @@
     "alt": "Three aligned timelines show when sensor measurements were timestamped, when a delayed measurement arrived, and which state estimates must be updated.",
     "caption": "A delayed measurement arrives after newer observations. The estimator uses its earlier timestamp to update the current state, rather than treating arrival order as measurement order.",
     "sourceUrl": "https://lup.lub.lu.se/search/files/1732710/4697848.pdf",
-    "evidenceNote": "Journal article verified by Lund University; 25 OpenAlex citations for DOI 10.1109/TSP.2014.2365763 on 2026-09-27."
+    "evidenceNote": "Journal article verified by Lund University; 25 OpenAlex citations for DOI 10.1109/TSP.2014.2365763 on 2026-09-27.",
+    "width": 1312,
+    "height": 651
   },
   {
     "publicationId": "Greiff2025jan",
@@ -24,6 +28,32 @@
     "alt": "A planned quadrotor path winds around red three-dimensional obstacles, beside photos of the indoor obstacle course and the Crazyflie quadrotor used in the experiment.",
     "caption": "A quadrotor navigates through a course of obstacles using invariant-set motion planning. The adjacent photos show the indoor experiment and the Crazyflie vehicle.",
     "sourceUrl": "https://merl.com/publications/docs/TR2025-010.pdf",
-    "evidenceNote": "Journal article verified by MERL and IEEE; chosen for direct robot-autonomy and experiment fit despite its recent publication (2 OpenAlex citations on 2026-09-27)."
+    "evidenceNote": "Journal article verified by MERL and IEEE; chosen for direct robot-autonomy and experiment fit despite its recent publication (2 OpenAlex citations on 2026-09-27).",
+    "width": 1984,
+    "height": 875
+  },
+  {
+    "publicationId": "Berntorp2018dec",
+    "theme": "planning-control",
+    "image": "/research/particle-filter-mini-car.webp",
+    "width": 1600,
+    "height": 993,
+    "alt": "Ackermann-steered Hamster mini-car with reflective tracking markers, with an inset photograph of an Optitrack motion-capture camera.",
+    "caption": "The Hamster mini-car used for the scaled-vehicle experiments. Reflective markers support position tracking; the inset shows an Optitrack camera. Figure 11 from the paper.",
+    "sourceUrl": "https://www.merl.com/publications/docs/TR2018-164.pdf",
+    "credit": "Karl Berntorp, Tru Hoang, and Stefano Di Cairano. © Mitsubishi Electric Research Laboratories, Inc., 2018. Reproduced by permission of Mitsubishi Electric Research Laboratories, Inc. All rights reserved.",
+    "showOnOverview": false
+  },
+  {
+    "publicationId": "Berntorp2016e",
+    "theme": "localization-estimation",
+    "image": "/research/vehicle-state-estimation.svg",
+    "width": 440,
+    "height": 520,
+    "alt": "Wheel encoders, an inertial unit, and GPS feed a Rao–Blackwellized particle filter using a kinematic model, producing estimates of longitudinal velocity, roll angle, and slip at all four wheels.",
+    "caption": "Explanatory illustration of the sensor inputs and estimated quantities described in the paper.",
+    "sourceUrl": "https://portal.research.lu.se/en/publications/joint-wheel-slip-and-vehicle-motion-estimation-based-on-inertial-/",
+    "sourceLabel": "Illustration based on",
+    "showOnOverview": false
   }
 ]

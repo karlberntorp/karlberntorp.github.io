@@ -5,6 +5,7 @@ import patentsBib from '../data/patents.bib?raw';
 export type PublicationType =
   | 'journal'
   | 'conference'
+  | 'workshop'
   | 'book-chapter'
   | 'preprint'
   | 'report'
@@ -64,7 +65,7 @@ function publicationType(entry: BibEntry, patentList: boolean): PublicationType 
     case 'article':
       return /(?:arxiv|preprint)/i.test(`${entry.entryTags.journal ?? ''} ${entry.entryTags.keywords ?? ''}`)
         ? 'preprint' : 'journal';
-    case 'inproceedings': return 'conference';
+    case 'inproceedings': return (entry.entryTags.keywords ?? '').split(',').some((keyword) => keyword.trim().toLowerCase() === 'workshop') ? 'workshop' : 'conference';
     case 'incollection': return 'book-chapter';
     case 'techreport': return 'report';
     case 'phdthesis':
@@ -104,7 +105,7 @@ function parseBibliography(source: string, patentList: boolean): Publication[] {
     const venue = plainText(
       type === 'patent' ? `US Patent ${patentNumber}` :
       type === 'journal' || type === 'preprint' ? fields.journal ?? '' :
-      type === 'conference' || type === 'book-chapter' ? fields.booktitle ?? '' :
+      type === 'conference' || type === 'workshop' || type === 'book-chapter' ? fields.booktitle ?? '' :
       type === 'report' ? fields.institution ?? 'Technical report' :
       fields.school ?? 'Thesis',
     );

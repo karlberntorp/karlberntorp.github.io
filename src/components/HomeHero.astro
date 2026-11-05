@@ -1,27 +1,27 @@
 ---
-interface Props { title: string; lead: string; portraitFile?: string }
-const { title, lead, portraitFile } = Astro.props;
+interface Props { title: string; eyebrow: string; lead: string; portraitFile?: string }
+const { title, eyebrow, lead, portraitFile } = Astro.props;
 ---
   <section class="hero">
     <div class:list={['container', 'hero-grid', { 'with-portrait': portraitFile }]}>
       <div>
-        <p class="eyebrow">Research leader · Robotics &amp; autonomy</p>
+        <p class="eyebrow">{eyebrow}</p>
         <h1>{title}</h1>
         <p class="hero-lead">{lead}</p>
-        <dl class="hero-metrics" aria-label="Research output">
-          <div>
-            <dt>Publications</dt>
-            <dd><span aria-hidden="true">≈130</span><span class="sr-only">Approximately 130</span></dd>
-          </div>
-          <div>
-            <dt>Granted US patents</dt>
-            <dd><span aria-hidden="true">≈50</span><span class="sr-only">Approximately 50</span></dd>
-          </div>
-        </dl>
         <div class="hero-actions">
           <a class="button" href="#experience">Experience <span aria-hidden="true">↓</span></a>
           <a class="button button-secondary" href="/research/">Explore research <span aria-hidden="true">→</span></a>
         </div>
+        <dl class="hero-metrics" aria-label="Research credentials">
+          <div>
+            <dt>publications</dt>
+            <dd><span aria-hidden="true">≈130</span><span class="sr-only">Approximately 130</span></dd>
+          </div>
+          <div>
+            <dt>granted US patents</dt>
+            <dd><span aria-hidden="true">≈50</span><span class="sr-only">Approximately 50</span></dd>
+          </div>
+        </dl>
       </div>
       <aside class:list={['hero-aside', { 'has-portrait': portraitFile }]} aria-label="Current role and profile links">
         {portraitFile && <img class="portrait" src={`/${portraitFile}`} alt="Karl Berntorp" width="200" height="250" decoding="async" />}
@@ -43,11 +43,11 @@ const { title, lead, portraitFile } = Astro.props;
   .hero-grid { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(230px, .8fr); align-items: end; gap: clamp(2.5rem, 8vw, 7rem); }
   .hero-grid.with-portrait { align-items: start; }
   h1 { max-width: 780px; margin-bottom: 1rem; }
-  .hero-metrics { display: flex; flex-wrap: wrap; gap: 1rem clamp(1rem, 3vw, 2rem); max-width: 520px; margin: 0 0 2rem; padding: 1.25rem 0 0; border-top: 1px solid #cad9e5; }
-  .hero-metrics div { display: flex; flex: 1 1 9rem; flex-direction: column; }
-  .hero-metrics dd { margin: 0; color: var(--navy); font-family: var(--serif); font-size: clamp(2.15rem, 4vw, 3rem); font-weight: 600; letter-spacing: -.04em; line-height: 1.1; }
-  .hero-metrics dt { margin-top: .25rem; color: var(--blue-dark); font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-  .hero-metrics dd { order: -1; }
+  .hero-metrics { display: flex; flex-wrap: wrap; gap: .35rem .6rem; margin: 1.25rem 0 0; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+  .hero-metrics div { display: flex; align-items: baseline; gap: .3rem; white-space: nowrap; }
+  .hero-metrics div + div::before { content: '·'; order: -2; margin-right: .3rem; }
+  .hero-metrics dt { margin: 0; }
+  .hero-metrics dd { order: -1; margin: 0; font-weight: 600; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
   .hero-aside { padding: 0 0 .3rem 1.7rem; border-left: 1px solid #cad9e5; }
   .hero-aside.has-portrait { padding-left: 0; border-left: 0; }

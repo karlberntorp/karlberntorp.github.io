@@ -2,22 +2,11 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { Content, frontmatter } from '../content/research.md';
 import { publications } from '../lib/publications';
-import highlightsData from '../data/research-highlights.json';
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { researchHighlights } from '../lib/research-highlights';
+import { projectByPublication } from '../lib/research-projects';
+import ResearchFigure from '../components/ResearchFigure.astro';
 
-type Highlight = {
-  publicationId: string;
-  theme: string;
-  image: string;
-  alt: string;
-  caption: string;
-  sourceUrl: string;
-};
-const highlights = highlightsData as Highlight[];
-const expandedVenues: Record<string, string> = {
-  'IEEE Trans. Signal Process.': 'IEEE Transactions on Signal Processing',
-};
+const highlights = researchHighlights.filter((highlight) => highlight.showOnOverview !== false);
 
 const themes = [
   { key: 'planning-control', title: 'Planning and control', description: 'Safe decisions and feasible motion for systems with dynamic constraints.', ids: ['Berntorp2020jan', 'Berntorp2018dec'] },
@@ -30,12 +19,6 @@ for (const theme of themes) {
   for (const id of theme.ids) {
     if (!publicationById.has(id)) throw new Error(`Representative publication ${id} was not found in the bibliography.`);
   }
-}
-for (const highlight of highlights) {
-  if (!themes.some((theme) => theme.key === highlight.theme)) throw new Error(`Unknown research theme ${highlight.theme}.`);
-  if (!publicationById.has(highlight.publicationId)) throw new Error(`Research highlight publication ${highlight.publicationId} was not found in the bibliography.`);
-  if (!highlight.image.startsWith('/research/')) throw new Error(`Research image must be a local /research/ URL: ${highlight.image}`);
-  if (!existsSync(join(process.cwd(), 'public', highlight.image.slice(1)))) throw new Error(`Research image was not found: ${highlight.image}`);
 }
 ---
 
@@ -54,10 +37,8 @@ for (const highlight of highlights) {
           <div class="theme-media">
             {highlights.filter((item) => item.theme === theme.key).map((highlight) => {
               const paper = publicationById.get(highlight.publicationId)!;
-              return <figure>
-              <div class="figure-frame"><img src={highlight.image} alt={highlight.alt} loading="lazy" decoding="async" /></div>
-              <figcaption>{highlight.caption} <span class="source"><a href={highlight.sourceUrl} target="_blank" rel="noopener noreferrer">From <cite>{paper.title}</cite>, {expandedVenues[paper.venue] ?? paper.venue} ({paper.year}).<span class="sr-only"> (opens in a new tab)</span></a></span></figcaption>
-            </figure>})}
+              return <ResearchFigure figure={highlight} paper={paper} overview />;
+            })}
           </div>
           <div class="theme-copy">
             <p class="eyebrow">Research area</p>
@@ -66,7 +47,8 @@ for (const highlight of highlights) {
             <p class="paper-label">Representative papers</p>
             <ul>{[...new Set([...theme.ids, ...highlights.filter((item) => item.theme === theme.key).map((item) => item.publicationId)])].map((id) => {
               const paper = publicationById.get(id);
-              return paper && <li><a href={`/publications/#${paper.id}`}>{paper.title}</a><span>{paper.year}</span></li>;
+              const project = projectByPublication.get(id);
+              return paper && <li><a href={`/publications/#${paper.id}`}>{paper.title}</a><span>{paper.year}</span>{project && <a class="project-link" href={project.href}>Explore the work <span aria-hidden="true">→</span><span class="sr-only">: {paper.title}</span></a>}</li>;
             })}</ul>
           </div>
         </section>)}
@@ -82,13 +64,6 @@ for (const highlight of highlights) {
   .themes { display: grid; gap: 1.5rem; }
   .theme { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); border: 1px solid var(--line); background: var(--soft); }
   .theme-media { min-width: 0; display: grid; align-content: start; gap: 1rem; padding: 1rem; background: white; border-right: 1px solid var(--line); }
-  figure { margin: 0; }
-  .figure-frame { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #f4f7f9; }
-  .figure-frame img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
-  figcaption { padding: .7rem .15rem .15rem; color: #42576b; font-size: .8rem; line-height: 1.5; }
-  .source { display: block; margin-top: .3rem; color: var(--muted); font-size: .75rem; }
-  .source a { color: inherit; }
-  .source cite { font-style: normal; }
   .theme-copy { min-width: 0; padding: clamp(1.4rem, 3vw, 2.2rem); }
   .theme-copy .eyebrow { margin-bottom: .55rem; }
   .theme h3 { margin: 0 0 .65rem; font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 2rem); }
@@ -99,5 +74,7 @@ for (const highlight of highlights) {
   .theme li a { display: block; font-family: var(--serif); font-size: .98rem; font-weight: 600; line-height: 1.38; text-decoration: none; }
   .theme li a:hover { text-decoration: underline; }
   .theme li span { color: var(--muted); font-size: .75rem; }
+  .theme li .project-link { margin-top: .3rem; font-family: var(--sans); font-size: .8rem; text-decoration: underline; }
+  .theme li .project-link span { color: inherit; font-size: inherit; }
   @media (max-width: 800px) { .theme { grid-template-columns: 1fr; } .theme-media { border-right: 0; border-bottom: 1px solid var(--line); } }
 </style>

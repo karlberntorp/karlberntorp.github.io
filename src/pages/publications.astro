@@ -6,6 +6,7 @@ import { patents, publications, type Publication } from '../lib/publications';
 const labels: Record<Publication['type'], string> = {
   journal: 'Journal article',
   conference: 'Conference paper',
+  workshop: 'Workshop paper',
   'book-chapter': 'Book chapter',
   preprint: 'Preprint',
   report: 'Technical report',
@@ -31,7 +32,7 @@ const patentYears = byYear(patents);
     <header class="page-intro">
       <p class="eyebrow">Research output</p>
       <h1>Publications &amp; patents</h1>
-      <p>A record of scholarly publications and granted US patents. Entries are drawn from the September 2026 bibliography.</p>
+      <p>A record of scholarly publications and granted US patents. Bibliography updated November 5, 2026; workshop papers are labeled separately from conference papers.</p>
       <div class="summary" aria-label="Bibliography summary">
         <span><strong>{publications.length}</strong> publications</span>
         <span><strong>{patents.length}</strong> granted US patents</span>

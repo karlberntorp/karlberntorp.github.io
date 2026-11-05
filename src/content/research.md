@@ -1,10 +1,10 @@
 ---
 title: Research
-description: Research interests in planning and control, localization and estimation, and mobile robot autonomy.
-lead: Estimation, planning, and control for robots and vehicles operating with uncertainty.
+description: Research in learning, estimation, planning, and control for robotics, autonomy, and AI.
+lead: Learning, estimation, planning, and control for robots and autonomous systems.
 ---
 
-My research connects estimation, decision making, and control with the work of building autonomous systems. I develop methods for uncertainty and physical constraints, then define how to validate them in experiments and deployed systems. This has meant working across research, engineering, and product teams as well as setting technical direction for larger programs.
+My work covers learning, estimation, planning, and control for robots and autonomous systems. I combine technical direction and team leadership with hands-on algorithm development.
 
 ## Planning and control
 
@@ -14,6 +14,10 @@ Planning a feasible path is only part of an autonomy problem; the system must al
 
 Reliable autonomy depends on knowing where a system is and how it is moving. I have developed Bayesian filtering and sensor-fusion methods for vehicle state estimation, GNSS positioning, and joint vehicle localization and road mapping. This line of work includes particle filters, Kalman filters, factor-graph methods, and learning-based models, with attention to imperfect measurements and uncertain sensor noise.
 
+## Learning and adaptation
+
+My work in learning includes [online Bayesian learning of Gaussian-process state-space models](/publications/#Berntorp2021mar), [physically constrained neural system identification](/publications/#chakrabarty2025metalearningphysicallyconstrainedneuralidentification), and [learning control policies from digital-twin simulations](/publications/#Menner2022aug). The [AIDA framework](/publications/#Yang2026aida) combines neuro-symbolic planning with residual learning for multi-task robot policies.
+
 ## Mobile manipulation and robot autonomy
 
-At Chewy, I lead autonomy algorithm work for mobile manipulation systems, from research prototypes through validation and engineering handoff. Earlier work at WASR and Symbotic addressed routing, control, and coordination in fleets of autonomous robots. These problems bring planning, estimation, and control together under the timing and reliability requirements of real operations.
+At Chewy, I lead autonomy algorithm work for mobile manipulation systems, from research through validation and engineering handoff. My work includes a robot-management system connecting mapping, scene understanding, task allocation, and routing, validated on physical robots. Earlier work at WASR and Symbotic addressed routing, control, and coordination in fleets of autonomous robots.

@@ -9,6 +9,7 @@ import SelectedResearch from '../components/SelectedResearch.astro';
 import { impactHighlights } from '../data/impact-highlights';
 import { frontmatter as selectedWork } from '../content/selected-work.md';
 import { publications } from '../lib/publications';
+import { projectByPublication } from '../lib/research-projects';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -16,13 +17,15 @@ const selections = selectedWork.papers as { id: string; summary: string }[];
 const selected = selections.flatMap(({ id, summary }) => {
   const paper = publications.find((item) => item.id === id);
   if (!paper) throw new Error(`Selected publication ${id} was not found in the bibliography.`);
-  return paper ? [{ paper, summary }] : [];
+  const project = projectByPublication.get(id);
+  if (!project) throw new Error(`Selected publication ${id} has no project page.`);
+  return [{ paper, summary, projectHref: project.href }];
 });
 const portraitFile = ['portrait.webp', 'portrait.jpg', 'portrait.png'].find((name) => existsSync(join(process.cwd(), 'public', name)));
 ---
 
 <SiteLayout title="Home" description={home.description}>
-  <HomeHero title={home.title} lead={home.lead} portraitFile={portraitFile} />
+  <HomeHero title={home.title} eyebrow={home.eyebrow} lead={home.lead} portraitFile={portraitFile} />
   <SelectedImpact items={impactHighlights} />
   <ExperienceSummary entries={experience.entries} supporting={experience.supporting} />
   <SelectedResearch selected={selected} />

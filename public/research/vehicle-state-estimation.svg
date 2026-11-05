@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="520" viewBox="0 0 440 520" role="img" aria-labelledby="title desc">
+  <title id="title">Sensors combined to estimate vehicle motion and wheel slip</title>
+  <desc id="desc">Wheel encoders, inertial measurements, and GPS feed a Rao–Blackwellized particle filter. Its outputs include longitudinal velocity, roll angle, and slip at all four wheels. This is an explanatory schematic, not an experimental result.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="none" stroke="#27679e" stroke-width="1.5"/></marker></defs>
+  <rect width="440" height="520" fill="#f5f8fb"/>
+  <g font-family="Arial, sans-serif" text-anchor="middle" fill="#122a44">
+    <text x="220" y="32" font-size="14" letter-spacing="1">COMPLEMENTARY MEASUREMENTS</text>
+    <g fill="#fff" stroke="#cad9e5" stroke-width="2">
+      <rect x="12" y="55" width="128" height="88" rx="6"/>
+      <rect x="156" y="55" width="128" height="88" rx="6"/>
+      <rect x="300" y="55" width="128" height="88" rx="6"/>
+    </g>
+    <g font-size="20" font-weight="bold">
+      <text x="76" y="92">Wheel</text><text x="76" y="118">encoders</text>
+      <text x="220" y="92">Inertial</text><text x="220" y="118">unit</text>
+      <text x="364" y="105">GPS</text>
+    </g>
+    <g fill="none" stroke="#27679e" stroke-width="2.5" marker-end="url(#arrow)">
+      <path d="M76 143 V174 H180 V208"/>
+      <path d="M220 143 V208"/>
+      <path d="M364 143 V174 H260 V208"/>
+    </g>
+    <rect x="40" y="220" width="360" height="120" rx="6" fill="#122a44"/>
+    <g fill="#fff">
+      <text x="220" y="259" font-size="23" font-weight="bold">Rao–Blackwellized</text>
+      <text x="220" y="289" font-size="23" font-weight="bold">particle filter</text>
+      <text x="220" y="320" font-size="19">Kinematic vehicle model</text>
+    </g>
+    <path d="M220 340 V378" fill="none" stroke="#27679e" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <rect x="40" y="390" width="360" height="110" rx="6" fill="#fff" stroke="#cad9e5" stroke-width="2"/>
+    <text x="220" y="423" font-size="22" font-weight="bold">Estimated vehicle state</text>
+    <text x="220" y="453" font-size="20">Longitudinal velocity · Roll angle</text>
+    <text x="220" y="480" font-size="20">Slip at all four wheels</text>
+  </g>
+</svg>
